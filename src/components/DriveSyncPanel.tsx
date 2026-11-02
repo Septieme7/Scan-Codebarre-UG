@@ -63,8 +63,9 @@ export const DriveSyncPanel: React.FC<DriveSyncPanelProps> = ({
               <Mail className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Compte Google Associé</p>
-              <p className="text-sm font-bold text-slate-900 dark:text-white">{userEmail}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Comptes Administrateurs Autorisés :</p>
+              <p className="text-xs font-bold text-slate-900 dark:text-white font-mono">{userEmail} (Google Drive)</p>
+              <p className="text-xs font-semibold text-slate-600 dark:text-slate-300 font-mono">Univers-Gaming@hotmail.com (Secrétariat)</p>
             </div>
           </div>
 

@@ -24,12 +24,16 @@ export const EmailModal: React.FC<EmailModalProps> = ({
   document,
   onSendSuccess
 }) => {
+  const [senderOption, setSenderOption] = useState<'scangt7@gmail.com' | 'Univers-Gaming@hotmail.com' | 'custom'>('scangt7@gmail.com');
+  const [customSenderEmail, setCustomSenderEmail] = useState('');
   const [to, setTo] = useState('');
   const [subject, setSubject] = useState('');
   const [body, setBody] = useState('');
   const [attachPdf, setAttachPdf] = useState(true);
   const [sending, setSending] = useState(false);
   const [sentSuccess, setSentSuccess] = useState(false);
+
+  const activeSenderEmail = senderOption === 'custom' ? (customSenderEmail || 'contact@univers-gaming.com') : senderOption;
 
   useEffect(() => {
     if (document) {
@@ -47,11 +51,11 @@ export const EmailModal: React.FC<EmailModalProps> = ({
 `Ce document fait foi de justificatif officiel. Conservez-le précieusement.\n\n` +
 `Sportivement,\n` +
 `L'Équipe Univers Gaming / Move&Swim\n` +
-`Pôle E-Sport & Secrétariat Administratif`
+`Pôle E-Sport & Secrétariat Administratif (${activeSenderEmail})`
       );
       setSentSuccess(false);
     }
-  }, [document]);
+  }, [document, activeSenderEmail]);
 
   if (!isOpen || !document) return null;
 
@@ -102,6 +106,33 @@ export const EmailModal: React.FC<EmailModalProps> = ({
         {/* Email Form */}
         <form onSubmit={handleSend} className="space-y-4 my-4">
           
+          {/* Sender Account */}
+          <div>
+            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+              Adresse Expéditeur
+            </label>
+            <select
+              value={senderOption}
+              onChange={(e) => setSenderOption(e.target.value as any)}
+              className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-semibold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="scangt7@gmail.com">scangt7@gmail.com (Google Workspace / Drive)</option>
+              <option value="Univers-Gaming@hotmail.com">Univers-Gaming@hotmail.com (Secrétariat Officiel)</option>
+              <option value="custom">Autre (Saisie manuelle d'une adresse email)...</option>
+            </select>
+
+            {senderOption === 'custom' && (
+              <input
+                type="email"
+                required
+                value={customSenderEmail}
+                onChange={(e) => setCustomSenderEmail(e.target.value)}
+                placeholder="Entrez une adresse e-mail personnalisée..."
+                className="mt-2 w-full px-3 py-2 bg-white dark:bg-slate-800 border border-indigo-300 dark:border-indigo-700 rounded-xl text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+            )}
+          </div>
+
           {/* Recipient */}
           <div>
             <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">

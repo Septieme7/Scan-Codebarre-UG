@@ -1,0 +1,46 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isAuthorizedAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == "scangt7@gmail.com" ||
+        request.auth.token.email == "Univers-Gaming@hotmail.com" ||
+        request.auth.token.email == "univers-gaming@hotmail.com" ||
+        request.auth.token.email_verified == true
+      );
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Documents Collection
+    match /documents/{documentId} {
+      allow read: if isAuthorizedAdmin();
+      allow create, update: if isAuthorizedAdmin() && isValidId(documentId);
+      allow delete: if isAuthorizedAdmin();
+    }
+
+    // Netlify Profiles Collection
+    match /netlify_profiles/{profileId} {
+      allow read: if isAuthorizedAdmin();
+      allow create, update, delete: if isAuthorizedAdmin();
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "entities": {
+    "ScannedDocument": {
+      "title": "Scanned Document",
+      "description": "Représente un document PDF scanné via Intermec SG20T et classé.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 256 },
+        "originalFileName": { "type": "string", "maxLength": 256 },
+        "fileUrl": { "type": "string", "maxLength": 1024 },
+        "category": { "type": "string", "enum": ["badges_lan", "recus_mecenat", "inscriptions_tournois", "justificatifs_paiement", "archives"] },
+        "barcode": { "type": "string", "maxLength": 128 },
+        "participantName": { "type": "string", "maxLength": 256 },
+        "email": { "type": "string", "maxLength": 256 },
+        "amount": { "type": "string", "maxLength": 64 },
+        "dateProcessed": { "type": "string", "maxLength": 64 },
+        "transactionRef": { "type": "string", "maxLength": 128 },
+        "status": { "type": "string", "enum": ["sorted", "pending", "archived"] },
+        "driveSynced": { "type": "boolean" },
+        "driveFileId": { "type": "string", "maxLength": 128 },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "ownerUid": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["id", "title", "category", "barcode", "dateProcessed"]
+    },
+    "NetlifyProfile": {
+      "title": "Netlify User Profile",
+      "description": "Profil utilisateur importé depuis les inscriptions univers-gaming.com.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "pseudo": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "typeInscription": { "type": "string" },
+        "evenement": { "type": "string", "maxLength": 256 },
+        "statutPaiement": { "type": "string" },
+        "montant": { "type": "string" },
+        "referenceTransaction": { "type": "string" }
+      },
+      "required": ["id", "pseudo", "email"]
+    }
+  },
+  "firestore": {
+    "/documents/{documentId}": {
+      "schema": "ScannedDocument",
+      "description": "Collection principale des documents PDF scannés"
+    },
+    "/netlify_profiles/{profileId}": {
+      "schema": "NetlifyProfile",
+      "description": "Base des inscriptions Netlify Univers Gaming"
+    }
+  }
+}
