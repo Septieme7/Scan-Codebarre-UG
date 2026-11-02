@@ -1,0 +1,6 @@
+{
+  "name": "Univers Gaming - Intermec SG20T PDF Vault",
+  "description": "Système de tri automatique de PDF en temps réel via scanner physique Intermec SG20T, synchronisation Google Drive, import Netlify et impression 1-page.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
