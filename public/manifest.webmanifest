@@ -1,0 +1,29 @@
+{
+  "short_name": "UG Vault",
+  "name": "Univers Gaming — Intermec SG20T PDF Vault",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "64x64 32x32 24x24 16x16"
+    },
+    {
+      "src": "/logoUG2026.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#020617",
+  "theme_color": "#059669",
+  "display": "standalone",
+  "orientation": "portrait",
+  "description": "Gestionnaire et trieur automatique de documents PDF scannés en temps réel via le scanner Intermec SG20T pour Univers Gaming & Move&Swim."
+}

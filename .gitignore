@@ -11,3 +11,6 @@ firebase-applet-config*.json
 firebase_applet_config.xml
 *.secret
 *.secret.json
+*.bat
+start-dev.bat
+start-prod.bat

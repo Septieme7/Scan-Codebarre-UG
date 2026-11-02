@@ -38,12 +38,15 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-8">
         
         {/* Zone 1: Wordmark Brand */}
-        <a href="/" className="flex items-center gap-2 text-slate-900 dark:text-white font-bold text-lg tracking-tight whitespace-nowrap shrink-0 group">
-          <div className="w-9 h-9 rounded-lg bg-emerald-600 dark:bg-emerald-500 flex items-center justify-center text-white shadow-sm group-hover:bg-emerald-500 transition-colors">
-            <Scan className="w-5 h-5" />
-          </div>
-          <span className="font-extrabold text-slate-900 dark:text-white">UNIVERS GAMING</span>
-          <span className="hidden sm:inline-block text-xs px-2 py-0.5 rounded font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-normal">
+        <a href="/" className="flex items-center gap-2.5 text-slate-900 dark:text-white font-bold text-lg tracking-tight whitespace-nowrap shrink-0 group">
+          <img 
+            src="/logoUG2026.png" 
+            alt="Univers Gaming Logo" 
+            className="h-8 w-auto object-contain transition-transform group-hover:scale-105"
+            referrerPolicy="no-referrer"
+          />
+          <span className="hidden sm:inline-block font-extrabold text-slate-900 dark:text-white">UNIVERS GAMING</span>
+          <span className="hidden md:inline-block text-xs px-2 py-0.5 rounded font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-normal">
             SG20T Vault
           </span>
         </a>
